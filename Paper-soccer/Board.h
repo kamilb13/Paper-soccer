@@ -8,12 +8,13 @@ class Board
 private:
 	int x, y;
 	vector<vector<Field>> fields;
-	Field currentField;
+	Field* currentField;
 
 public:
-	Board(vector<vector<Field>> fields, int x, int y);
-	void setCurerntField(Field field);
-	Field getCurrentField();
+	Board(int x, int y);
+	void setCurerntField(Field* field);
+	vector<vector<Field>> getFields();
+	Field* getCurrentField();
 	int getX();
 	int getY();
 };
