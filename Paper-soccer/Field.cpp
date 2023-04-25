@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Field::Field(){
+Field::Field() {
 	this->LG = nullptr;
 	this->G = nullptr;
 	this->PG = nullptr;
@@ -27,13 +27,23 @@ Field::Field(int x, int y)
 	this->y = y;
 }
 
-void Field::setVisited(bool flag){
+void Field::setVisited(bool flag) {
 	this->isVisited = flag;
 }
 
 bool Field::getVisited()
 {
 	return false;
+}
+
+void Field::setX(int x)
+{
+	this->x = x;
+}
+
+void Field::setY(int y)
+{
+	this->y = y;
 }
 
 int Field::getX()
@@ -48,37 +58,47 @@ int Field::getY()
 
 Field* Field::getLG()
 {
-	return nullptr;
+	return this->LG;
 }
 
 Field* Field::getG()
 {
-	return nullptr;
+	return this->G;
 }
 
 Field* Field::getPG()
 {
-	return nullptr;
+	return this->PG;
 }
 
 Field* Field::getL()
 {
-	return nullptr;
+	return this->L;
+}
+
+Field* Field::getP()
+{
+	return this->P;
 }
 
 Field* Field::getLD()
 {
-	return nullptr;
+	return this->LD;
 }
 
 Field* Field::getPD()
 {
-	return nullptr;
+	return this->PD;
 }
 
 Field* Field::getD()
 {
-	return nullptr;
+	return this->D;
+}
+
+wxButton* Field::getFieldBtn()
+{
+	return this->fieldBtn;
 }
 
 void Field::setLG(Field* field)
@@ -124,6 +144,10 @@ void Field::setD(Field* field)
 	this->D = field;
 }
 
+void Field::setFieldBtn(wxButton* button)
+{
+	this->fieldBtn = button;
+}
 
 
 

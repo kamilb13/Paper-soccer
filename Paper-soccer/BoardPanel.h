@@ -3,16 +3,15 @@
 #include "Board.h"
 #include "wx/wx.h"
 
-
-
 using namespace std;
 
-class BoardFrame : public wxFrame
+class BoardPanel : public wxPanel
 {
 private:
 	
 public:
-	BoardFrame(const wxString& title);
+	BoardPanel(wxFrame* parent, const wxString& title); 
 	void drawLine(wxCommandEvent& event, int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board);
 	void switchCurrentField(int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board);
+	void blockField(int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board);
 };

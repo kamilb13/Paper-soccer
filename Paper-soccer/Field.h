@@ -12,15 +12,14 @@ private:
 	Field* LD;
 	Field* PD;
 	Field* D;
-	
+	wxButton* fieldBtn;
 	bool isVisited;
 
 public:
-	wxButton* fieldBtn;
+	
 	Field();
 	Field(int x, int y);
-	void setVisited(bool flag);
-	bool getVisited();
+	
 	int getX();
 	int getY();
 	Field* getLG();
@@ -31,8 +30,11 @@ public:
 	Field* getLD();
 	Field* getPD();
 	Field* getD();
+	wxButton* getFieldBtn();
+	bool getVisited();
 
-
+	void setX(int x);
+	void setY(int y);
 	void setLG(Field* field);
 	void setG(Field* field);
 	void setPG(Field* field);
@@ -41,5 +43,6 @@ public:
 	void setLD(Field* field);
 	void setPD(Field* field);
 	void setD(Field* field);
+	void setFieldBtn(wxButton* button);
+	void setVisited(bool flag);
 };
-

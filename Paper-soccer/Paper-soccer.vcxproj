@@ -136,13 +136,19 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="BoardFrame.cpp" />
+    <ClCompile Include="BoardPanel.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="StartFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="BoardFrame.h" />
+    <ClInclude Include="BoardPanel.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="StartFrame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
