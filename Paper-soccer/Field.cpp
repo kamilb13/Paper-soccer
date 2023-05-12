@@ -33,7 +33,7 @@ void Field::setVisited(bool flag) {
 
 bool Field::getVisited()
 {
-	return false;
+	return this->isVisited;
 }
 
 void Field::setX(int x)
@@ -148,6 +148,5 @@ void Field::setFieldBtn(wxButton* button)
 {
 	this->fieldBtn = button;
 }
-
 
 
