@@ -3,33 +3,60 @@
 #include "Board.h"
 #include <wx/button.h>
 #include "BoardPanel.h"
+#include "EndPanel.h"
+#include <wx/sizer.h>
 
 using namespace std;
 
-BoardPanel::BoardPanel(wxFrame* parent, const wxString& title) : wxPanel(parent, wxID_ANY)
+BoardPanel::BoardPanel(wxWindow* parent, const wxString& title) : wxPanel(parent, wxID_ANY)
 {
+
+	/*wxImage image(wxT("C:/Users/Komputer/Desktop/PNGsy/football_field.png"), wxBITMAP_TYPE_ANY);
+	wxBitmap bitmap(image);
+	wxStaticBitmap* staticBitmap = new wxStaticBitmap(this, wxID_ANY, bitmap);
+	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+	sizer->Add(staticBitmap, 1, wxEXPAND);
+	SetSizer(sizer);
+	Layout();*/
+
+	this->SetBackgroundColour(wxColor(20, 200, 20, 200));
 	Board* board = new Board(7, 11);
 	wxPen boardLine(wxPen(wxColor(255, 255, 255), 10, wxPENSTYLE_SOLID));
 	board->setCurrentField(board->getFields()[5][3]);
+	board->getFieldAt(5, 3)->setVisited(1);
 	wxColour* disabledBtnColor = new wxColour(50, 50, 50, 0);
 	
+	
+
 	//CreateStatusBar();
 	//wxLogStatus(wxString::Format("%d", player));
 	wxClientDC line(this);
 	line.SetPen(boardLine);
 
-	wxPoint source(20, 20);
-	wxPoint destiny(500, 20);
 
-	line.DrawLine(source, destiny);
 	
+
+	auto boundCosTam = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
 	// WYŚWIETLANIE GÓREJ BRAMKI
 	wxButton* btnTopGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(80, 20), wxSize(10, 10));
+	btnTopGoal1->Disable();
+	btnTopGoal1->SetBackgroundColour(wxColour(210, 210, 210, 1));
 	wxButton* btnTopGoal2 = new wxButton(this, wxID_ANY, " ", wxPoint(110, 20), wxSize(10, 10));
-	auto boundCosTam = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
-	btnTopGoal2->Bind(wxEVT_BUTTON, boundCosTam);
+	btnTopGoal2->Disable();
+	btnTopGoal2->SetBackgroundColour(wxColour(210, 210, 210, 1));
+	
+
 
 	wxButton* btnTopGoal3 = new wxButton(this, wxID_ANY, " ", wxPoint(140, 20), wxSize(10, 10));
+
+
+	btnTopGoal3->Disable();
+	btnTopGoal3->SetBackgroundColour(wxColour(210, 210, 210, 1));
+
+	btnTopGoal1->Bind(wxEVT_BUTTON, boundCosTam);
+	btnTopGoal2->Bind(wxEVT_BUTTON, boundCosTam);
+	btnTopGoal3->Bind(wxEVT_BUTTON, boundCosTam);
+
 	//wxButton* btnBottomGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(20 + 30 * 2, 20 + 30 * 1), wxSize(10, 10));
 	board->getTopGoal1()->setFieldBtn(btnTopGoal1);
 	board->getTopGoal2()->setFieldBtn(btnTopGoal2);
@@ -37,11 +64,23 @@ BoardPanel::BoardPanel(wxFrame* parent, const wxString& title) : wxPanel(parent,
 	
 	// WYŚWIETLANIE DOLNEJ BRAMKI
 	wxButton* btnBottomGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(80, 50 + 30 * board->getY()), wxSize(10, 10));
+	btnBottomGoal1->Disable();
+	btnBottomGoal1->SetBackgroundColour(wxColour(210, 210, 210, 1));
 	wxButton* btnBottomGoal2 = new wxButton(this, wxID_ANY, " ", wxPoint(110, 50 + 30 * board->getY()), wxSize(10, 10));
+	btnBottomGoal2->Disable();
+	btnBottomGoal2->SetBackgroundColour(wxColour(210, 210, 210, 1));
 	auto boundCosTamBottom = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
 	btnBottomGoal2->Bind(wxEVT_BUTTON, boundCosTamBottom);
 
 	wxButton* btnBottomGoal3 = new wxButton(this, wxID_ANY, " ", wxPoint(140, 50 + 30 * board->getY()), wxSize(10, 10));
+	btnBottomGoal3->Disable();
+	btnBottomGoal3->SetBackgroundColour(wxColour(210, 210, 210, 1));
+
+	btnBottomGoal1->Bind(wxEVT_BUTTON, boundCosTam);
+	btnBottomGoal2->Bind(wxEVT_BUTTON, boundCosTam);
+	btnBottomGoal3->Bind(wxEVT_BUTTON, boundCosTam);
+
+
 	//wxButton* btnBottomGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(20 + 30 * 2, 20 + 30 * 1), wxSize(10, 10));
 	board->getBottomGoal1()->setFieldBtn(btnBottomGoal1);
 	board->getBottomGoal2()->setFieldBtn(btnBottomGoal2);
@@ -60,6 +99,14 @@ BoardPanel::BoardPanel(wxFrame* parent, const wxString& title) : wxPanel(parent,
 			board->getFieldAt(j, i)->getFieldBtn()->Disable();	//
 			board->getFieldAt(j, i)->getFieldBtn()->SetBackgroundColour(wxColour(210, 210, 210,1));	//
 			auto boundDrawLine = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), j, i, board, &player);
+			wxLogStatus(wxString::Format("%d", board->getFieldAt(j, i)->checkMoves()));
+
+			if (!(board->getFieldAt(j, i)->checkMoves())) 
+			{
+				auto boundDrawLine = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
+				btnBottomGoal2->Bind(wxEVT_BUTTON, boundCosTamBottom);
+				continue;
+			}
 			fieldButton->Bind(wxEVT_BUTTON, boundDrawLine);
 		}
 	}
@@ -93,8 +140,9 @@ BoardPanel::BoardPanel(wxFrame* parent, const wxString& title) : wxPanel(parent,
 void BoardPanel::drawLine(wxCommandEvent& event, int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board, bool* player) 
 {
 	if (destiny_x == -1) {
-		wxLogStatus("KONIEC");
-		wxWindow::Destroy();
+		EndPanel* endPanel = new EndPanel(this->GetParent(), "SIEMANKO");
+		endPanel->SetClientSize(400, 500);
+		this->Destroy();
 
 		return;
 	}
@@ -173,7 +221,7 @@ void BoardPanel::switchPlayer(Field* field, bool* player, Board* board) {
 		*player = temp;
 	}
 
-	wxLogStatus(wxString::Format("%d", *player));
+	
 
 }
 
@@ -234,7 +282,7 @@ void BoardPanel::switchCurrentField(int* current_x, int* current_y, int destiny_
 
 	
 	board->getFieldAt(destiny_x, destiny_y)->setVisited(true);
-	wxLogStatus(wxString::Format("%d", *player));
+
 	
 
 	
@@ -282,5 +330,6 @@ void BoardPanel::switchCurrentField(int* current_x, int* current_y, int destiny_
 	}
 		
 }
+
 
 

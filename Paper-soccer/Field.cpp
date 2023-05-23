@@ -31,6 +31,8 @@ void Field::setVisited(bool flag) {
 	this->isVisited = flag;
 }
 
+
+
 bool Field::getVisited()
 {
 	return this->isVisited;
@@ -147,6 +149,25 @@ void Field::setD(Field* field)
 void Field::setFieldBtn(wxButton* button)
 {
 	this->fieldBtn = button;
+}
+
+bool Field::checkMoves()
+{
+	bool canMove = false;
+	int moves = 0;
+	if (this->LG) moves++;
+	if (this->G) moves++;
+	if (this->PG) moves++;
+	if (this->L) moves++;
+	if (this->P) moves++;
+	if (this->LD) moves++;
+	if (this->D) moves++;
+	if (this->PD) moves++;
+		
+
+	if (moves > 1) canMove = true;
+
+	return canMove;
 }
 
 

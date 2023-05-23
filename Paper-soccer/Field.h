@@ -45,4 +45,6 @@ public:
 	void setD(Field* field);
 	void setFieldBtn(wxButton* button);
 	void setVisited(bool flag);
+
+	bool checkMoves();
 };

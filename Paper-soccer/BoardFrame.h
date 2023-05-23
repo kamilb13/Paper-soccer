@@ -13,6 +13,6 @@ private:
 	
 public:
 	BoardFrame(const wxString& title);
-	void drawLine(wxCommandEvent& event, int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board);
-	void switchCurrentField(int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board);
+	void drawLine(wxCommandEvent& event, int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board, bool* player);
+	void switchCurrentField(int* current_x, int* current_y, int destiny_x, int destiny_y, Board* board, bool* player);
 };
