@@ -2,7 +2,6 @@
 
 EndPanel::EndPanel(wxWindow* parent, const wxString& title) : wxPanel(parent, wxID_ANY)
 {
-
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -12,7 +11,6 @@ EndPanel::EndPanel(wxWindow* parent, const wxString& title) : wxPanel(parent, wx
 
     exitButton = new wxButton(this, wxID_ANY, "EXIT", wxPoint(100, 100), wxSize(100, 100));
     exitButton->Bind(wxEVT_BUTTON, &EndPanel::exitOnClick, this);
-
 
     buttonSizer->Add(exitButton, 0, wxALL, 10);
 

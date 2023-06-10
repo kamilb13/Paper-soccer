@@ -2,7 +2,8 @@
 
 using namespace std;
 
-Field::Field() {
+Field::Field() 
+{
 	this->LG = nullptr;
 	this->G = nullptr;
 	this->PG = nullptr;
@@ -27,11 +28,10 @@ Field::Field(int x, int y)
 	this->y = y;
 }
 
-void Field::setVisited(bool flag) {
+void Field::setVisited(bool flag) 
+{
 	this->isVisited = flag;
 }
-
-
 
 bool Field::getVisited()
 {
@@ -163,11 +163,9 @@ bool Field::checkMoves()
 	if (this->LD) moves++;
 	if (this->D) moves++;
 	if (this->PD) moves++;
-		
 
 	if (moves > 1) canMove = true;
 
 	return canMove;
 }
-
 

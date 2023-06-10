@@ -6,8 +6,7 @@
 class MainFrame : public wxFrame
 {
 public:
-    int page = 1;
     MainFrame(const wxString& title);
-    void startOnClick(wxCommandEvent& event);
-    void exitOnClick(wxCommandEvent& event);
+    int scorePlayer_1 = 0;
+    int scorePlayer_2 = 0;
 };

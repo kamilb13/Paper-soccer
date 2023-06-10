@@ -16,10 +16,8 @@ private:
 	bool isVisited;
 
 public:
-	
-	Field();
+	Field();		// konstruktor 
 	Field(int x, int y);
-	
 	int getX();
 	int getY();
 	Field* getLG();
@@ -32,7 +30,6 @@ public:
 	Field* getD();
 	wxButton* getFieldBtn();
 	bool getVisited();
-
 	void setX(int x);
 	void setY(int y);
 	void setLG(Field* field);
@@ -45,6 +42,5 @@ public:
 	void setD(Field* field);
 	void setFieldBtn(wxButton* button);
 	void setVisited(bool flag);
-
 	bool checkMoves();
 };

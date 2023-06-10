@@ -2,7 +2,6 @@
 #include "Field.h"
 #include <vector>
 
-
 using namespace std;
 
 class Board
@@ -17,7 +16,6 @@ private:
 	Field bottomGoal1;
 	Field bottomGoal2;
 	Field bottomGoal3;
-	
 
 public:
 	Field* getTopGoal1();
@@ -34,5 +32,4 @@ public:
 	Field* getFieldAt(int x, int y);
 	int getX();
 	int getY();
-
 };

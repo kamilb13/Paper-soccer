@@ -1,27 +1,13 @@
-#include "StartPanel.h"
+﻿#include "StartPanel.h"
 #include <wx/mediactrl.h>
 #include "BoardPanel.h"
 #include <wx/statbmp.h>
+#include <wx/sound.h>
 
-StartPanel::StartPanel(wxFrame* parent, const wxString& title) : wxPanel(parent, wxID_ANY)
+StartPanel::StartPanel(wxFrame* parent, const wxString& title, int* p1, int* p2) : wxPanel(parent, wxID_ANY)
 {
-    /*
-
-    wxImage image(wxT("C:/Users/Komputer/Desktop/PNGsy/ufo.png"), wxBITMAP_TYPE_PNG);
-    wxBitmap bitmap(image);
-
-    if (!image.IsOk())
-    {
-        wxMessageBox("Nie mo�na wczyta� obrazka.", "B��d", wxICON_ERROR | wxOK);
-        return;
-    }  
-
-    wxStaticBitmap* backgroundBitmap = new wxStaticBitmap(this, wxID_ANY, bitmap);
-    backgroundBitmap->SetSize(GetClientSize());
-    SetSizer(new wxBoxSizer(wxVERTICAL));
-
-    */
-    //wxPanel* panel = new wxPanel(this, wxID_ANY);
+    this->p1 = p1;
+    this->p2 = p2;
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -31,7 +17,7 @@ StartPanel::StartPanel(wxFrame* parent, const wxString& title) : wxPanel(parent,
 
     startButton = new wxButton(this, wxID_ANY, "START", wxDefaultPosition, wxSize(100, 60));
     startButton->Bind(wxEVT_BUTTON, &StartPanel::startOnClick, this);
-     
+
     exitButton = new wxButton(this, wxID_ANY, "EXIT", wxDefaultPosition, wxSize(100, 60));
     exitButton->Bind(wxEVT_BUTTON, &StartPanel::exitOnClick, this);
 
@@ -47,7 +33,7 @@ StartPanel::StartPanel(wxFrame* parent, const wxString& title) : wxPanel(parent,
 
 void StartPanel::startOnClick(wxCommandEvent& event)
 {
-    BoardPanel* boardPanel = new BoardPanel(this->GetParent(), "SIEMANKO");
+    BoardPanel* boardPanel = new BoardPanel(this->GetParent(), "SIEMANKO", p1, p2);
     boardPanel->SetClientSize(400, 500);
     this->Destroy();
 }
@@ -55,4 +41,19 @@ void StartPanel::startOnClick(wxCommandEvent& event)
 void StartPanel::exitOnClick(wxCommandEvent& event)
 {
     this->GetParent()->Destroy();
+}
+
+void StartPanel::PlaySound()
+{
+    // Ścieżka do pliku dźwiękowego
+    wxString soundFile = "C:/Users/kamil/Desktop/soccer-stadium.wav";  //C:\Users\kamil\Desktop\soccer-stadium.wav
+
+    wxSound sound(soundFile);
+    if (sound.IsOk()){
+        // Odtwarzanie dźwięku
+        sound.Play(wxSOUND_ASYNC);
+    }
+    else{
+        wxMessageBox("Nie można odtworzyć dźwięku.", "Błąd", wxOK | wxICON_ERROR);
+    }
 }

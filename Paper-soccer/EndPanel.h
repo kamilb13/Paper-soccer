@@ -11,4 +11,3 @@ public:
 	void exitOnClick(wxCommandEvent& event);
 };
 
-

@@ -7,20 +7,7 @@
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {
-    CreateStatusBar();
-
-    StartPanel* startPanel = new StartPanel(this, "");
-    startPanel->SetClientSize(550, 800);
-
-}
-
-void MainFrame::startOnClick(wxCommandEvent& event)
-{
-    wxLogStatus("KLIKAM");
-    
-}
-
-void MainFrame::exitOnClick(wxCommandEvent& event)
-{
-    this->Destroy();
+    StartPanel* startPanel = new StartPanel(this, "", &(this->scorePlayer_1), &(this->scorePlayer_2));
+    startPanel->SetClientSize(550, 600);
+    startPanel->PlaySound();
 }
