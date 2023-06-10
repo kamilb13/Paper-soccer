@@ -1,4 +1,3 @@
-#include "BoardFrame.h"
 #include "Field.h"
 #include "Board.h"
 #include <wx/button.h>

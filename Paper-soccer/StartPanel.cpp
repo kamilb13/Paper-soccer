@@ -46,7 +46,7 @@ void StartPanel::exitOnClick(wxCommandEvent& event)
 void StartPanel::PlaySound()
 {
     // Ścieżka do pliku dźwiękowego
-    wxString soundFile = "C:/Users/kamil/Desktop/soccer-stadium.wav";  //C:\Users\kamil\Desktop\soccer-stadium.wav
+    wxString soundFile = "C:/Users/kamil/source/repos/Paper-soccer_new/sounds/soccer-stadium.wav";  //C:\Users\kamil\source\repos\Paper-soccer_new\sounds
 
     wxSound sound(soundFile);
     if (sound.IsOk()){

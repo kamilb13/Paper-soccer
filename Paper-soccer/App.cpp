@@ -1,7 +1,5 @@
 #include "App.h"
 #include <wx/wx.h>
-#include "BoardFrame.h"
-#include "StartFrame.h"
 #include "MainFrame.h"
 
 using namespace std;
