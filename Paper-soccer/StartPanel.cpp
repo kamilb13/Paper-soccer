@@ -33,7 +33,7 @@ StartPanel::StartPanel(wxFrame* parent, const wxString& title, int* p1, int* p2)
 
 void StartPanel::startOnClick(wxCommandEvent& event)
 {
-    BoardPanel* boardPanel = new BoardPanel(this->GetParent(), "SIEMANKO", p1, p2);
+    BoardPanel* boardPanel = new BoardPanel(this->GetParent(), "", p1, p2);
     boardPanel->SetClientSize(400, 500);
     this->Destroy();
 }

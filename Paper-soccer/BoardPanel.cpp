@@ -23,7 +23,7 @@ BoardPanel::BoardPanel(wxWindow* parent, const wxString& title, int* p1, int* p2
 	player1Score = new wxStaticText(this, wxID_ANY, score1, wxPoint(10, 10));
 	player2Score = new wxStaticText(this, wxID_ANY, score2, wxPoint(10, 40));
 
-	auto boundCosTam = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
+	auto boundTopGoal = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -1, -1, board, &player);
 	// WYŒWIETLANIE GÓREJ BRAMKI
 	wxButton* btnTopGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(150, 20), wxSize(10, 10));
 	btnTopGoal1->Disable();
@@ -37,9 +37,9 @@ BoardPanel::BoardPanel(wxWindow* parent, const wxString& title, int* p1, int* p2
 	btnTopGoal3->Disable();
 	btnTopGoal3->SetBackgroundColour(wxColour(210, 210, 210, 1));
 
-	btnTopGoal1->Bind(wxEVT_BUTTON, boundCosTam);
-	btnTopGoal2->Bind(wxEVT_BUTTON, boundCosTam);
-	btnTopGoal3->Bind(wxEVT_BUTTON, boundCosTam);
+	btnTopGoal1->Bind(wxEVT_BUTTON, boundTopGoal);
+	btnTopGoal2->Bind(wxEVT_BUTTON, boundTopGoal);
+	btnTopGoal3->Bind(wxEVT_BUTTON, boundTopGoal);
 
 	//wxButton* btnBottomGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(20 + 30 * 2, 20 + 30 * 1), wxSize(10, 10));
 	board->getTopGoal1()->setFieldBtn(btnTopGoal1);
@@ -53,16 +53,16 @@ BoardPanel::BoardPanel(wxWindow* parent, const wxString& title, int* p1, int* p2
 	wxButton* btnBottomGoal2 = new wxButton(this, wxID_ANY, " ", wxPoint(180, 50 + 30 * board->getY()), wxSize(10, 10));
 	btnBottomGoal2->Disable();
 	btnBottomGoal2->SetBackgroundColour(wxColour(210, 210, 210, 1));
-	auto boundCosTamBottom = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -2, -1, board, &player);
-	btnBottomGoal2->Bind(wxEVT_BUTTON, boundCosTamBottom);
+	auto boundBottomGoal = std::bind(&BoardPanel::drawLine, this, std::placeholders::_1, &(board->current_x), &(board->current_y), -2, -1, board, &player);
+	btnBottomGoal2->Bind(wxEVT_BUTTON, boundBottomGoal);
 
 	wxButton* btnBottomGoal3 = new wxButton(this, wxID_ANY, " ", wxPoint(210, 50 + 30 * board->getY()), wxSize(10, 10));
 	btnBottomGoal3->Disable();
 	btnBottomGoal3->SetBackgroundColour(wxColour(210, 210, 210, 1));
 
-	btnBottomGoal1->Bind(wxEVT_BUTTON, boundCosTamBottom);
-	btnBottomGoal2->Bind(wxEVT_BUTTON, boundCosTamBottom);
-	btnBottomGoal3->Bind(wxEVT_BUTTON, boundCosTamBottom);
+	btnBottomGoal1->Bind(wxEVT_BUTTON, boundBottomGoal);
+	btnBottomGoal2->Bind(wxEVT_BUTTON, boundBottomGoal);
+	btnBottomGoal3->Bind(wxEVT_BUTTON, boundBottomGoal);
 
 	//wxButton* btnBottomGoal1 = new wxButton(this, wxID_ANY, " ", wxPoint(20 + 30 * 2, 20 + 30 * 1), wxSize(10, 10));
 	board->getBottomGoal1()->setFieldBtn(btnBottomGoal1);
